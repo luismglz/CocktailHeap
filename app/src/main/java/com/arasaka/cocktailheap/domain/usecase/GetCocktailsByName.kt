@@ -10,5 +10,5 @@ import javax.inject.Inject
 class GetCocktailsByName @Inject constructor(private val cocktailRepository: CocktailRepository) :
     UseCase<CocktailsResponse, String>() {
 
-    override suspend fun run(params: String) = cocktailRepository.getCocktailsByName(params);
+    override suspend fun run(params: String ) = cocktailRepository.getCocktailsByName(params);
 }

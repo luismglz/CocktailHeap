@@ -1,25 +1,26 @@
-package com.arasaka.cocktailheap.presentation.cocktails.detail
+package com.arasaka.cocktailheap.presentation.cocktails
 
 
-import com.arasaka.cocktailheap.data.dto.CocktailsResponse
 import com.arasaka.cocktailheap.domain.usecase.GetCocktailsByName
 import com.arasaka.cocktailheap.presentation.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import javax.inject.Inject
 
+
+@DelicateCoroutinesApi
+@HiltViewModel
 class CocktailViewModel @Inject constructor(private val getCocktailsByName: GetCocktailsByName) : BaseViewModel() {
 
-    //:: -> convert function to a lambda and it passes the params directly
-    @DelicateCoroutinesApi
     fun doGetCocktailsByName(name:String){
         getCocktailsByName(name){
             it.fold(::handleFailure){
-                state.value = CocktailViewState.CocktailsRecived(it.listDrinks ?: listOf())
+                state.value = CocktailViewState.CocktailsReceived(it.drinks ?: listOf())
                 true
             }
         }
     }
 
 
-
+    //:: -> convert function to a lambda and it passes the params directly
 }

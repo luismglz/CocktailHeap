@@ -1,4 +1,4 @@
-package com.arasaka.cocktailheap.presentation.cocktails.detail
+package com.arasaka.cocktailheap.presentation.cocktails
 
 class CocktailFailure {
 }

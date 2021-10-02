@@ -14,7 +14,7 @@ class CocktailRepositoryImpl @Inject constructor(
     CocktailRepository, ApiRequest {
 
     override fun getCocktailsByName(name: String) = makeRequest(
-        networkHandler, cocktailApi.getCocktailsByName(name), { it }, CocktailsResponse(
+        networkHandler, cocktailApi.getCocktailsByName("ron"), { it }, CocktailsResponse(
             emptyList()
         )
     )

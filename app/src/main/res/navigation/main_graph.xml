@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/cocktailFragment"
-        android:name="com.arasaka.cocktailheap.presentation.cocktails.detail.CocktailFragment"
+        android:name="com.arasaka.cocktailheap.presentation.cocktails.CocktailFragment"
         android:label="cocktail_fragment"
         tools:layout="@layout/cocktail_fragment" />
 

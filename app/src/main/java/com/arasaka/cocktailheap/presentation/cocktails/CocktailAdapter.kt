@@ -1,9 +1,11 @@
-package com.arasaka.cocktailheap.presentation.cocktails.detail
+package com.arasaka.cocktailheap.presentation.cocktails
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.arasaka.cocktailheap.core.extension.loadFromURL
 import com.arasaka.cocktailheap.databinding.RowCocktailBinding
 import com.arasaka.cocktailheap.domain.model.Cocktail
 
@@ -30,18 +32,20 @@ class CocktailAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     //bind information to rows, with respect to datacollection response
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
         (holder as ViewHolderItem).bind(
-            list[position]//the information to be printed is being passed on
+            list[position]
         )
 
     //this is to know how many items are in recyclerview
-    override fun getItemCount() = list.size;
+    override fun getItemCount() = list.size
 
 
-    class ViewHolderItem(private val binding: RowCocktailBinding):RecyclerView.ViewHolder(binding.root){
+    class ViewHolderItem(private val binding: RowCocktailBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         //this cocktail type object will be binded in recycleview
         fun bind(data: Cocktail){
            // binding.txvName.text
             binding.item = data// 'item' was created in layout row
+            binding.imgCocktail.loadFromURL(data.urlThumb);
         }
     }
 }
