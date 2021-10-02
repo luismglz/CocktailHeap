@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cocktail Heap</string>
+    <string name="text_cocktails">Cocktails</string>
+    <string name="text_favorites">Favorites</string>
+    <string name="text_account">Account</string>
+    <string name="failure_response">Oops\nError making call with server</string>
+</resources>
