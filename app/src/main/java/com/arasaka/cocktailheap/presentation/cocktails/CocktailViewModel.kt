@@ -1,6 +1,8 @@
 package com.arasaka.cocktailheap.presentation.cocktails
 
 
+import android.widget.SearchView
+import com.arasaka.cocktailheap.R
 import com.arasaka.cocktailheap.domain.usecase.GetCocktailsByName
 import com.arasaka.cocktailheap.presentation.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,6 +22,12 @@ class CocktailViewModel @Inject constructor(private val getCocktailsByName: GetC
             }
         }
     }
+
+
+
+
+
+
 
 
     //:: -> convert function to a lambda and it passes the params directly

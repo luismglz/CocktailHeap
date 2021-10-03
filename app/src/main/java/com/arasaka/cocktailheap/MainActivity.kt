@@ -8,7 +8,12 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.NavigationUI
 import com.arasaka.cocktailheap.databinding.ActivityMainBinding
 import com.arasaka.cocktailheap.presentation.BaseActivity
+import com.arasaka.cocktailheap.presentation.cocktails.CocktailFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
@@ -26,6 +31,7 @@ class MainActivity : BaseActivity() {
 
     override fun setUpNavigation(navController: NavController) =
         NavigationUI.setupWithNavController(binding.bnvMain, navController)
+
 
     override fun showProgress(show: Boolean) {
         binding.progressView.isVisible = show

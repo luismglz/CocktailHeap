@@ -45,7 +45,7 @@ class CocktailAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(data: Cocktail){
            // binding.txvName.text
             binding.item = data// 'item' was created in layout row
-            binding.imgCocktail.loadFromURL(data.urlThumb);
+
         }
     }
 }
