@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.arasaka.cocktailheap.core.extension.loadFromURL
+import com.arasaka.cocktailheap.databinding.GridCocktailBinding
 import com.arasaka.cocktailheap.databinding.RowCocktailBinding
 import com.arasaka.cocktailheap.domain.model.Cocktail
 
@@ -29,6 +30,7 @@ class CocktailAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     )
 
 
+
     //bind information to rows, with respect to datacollection response
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
         (holder as ViewHolderItem).bind(
@@ -48,4 +50,6 @@ class CocktailAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         }
     }
+
+
 }

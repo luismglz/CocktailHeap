@@ -6,5 +6,4 @@ import com.arasaka.cocktailheap.presentation.BaseViewState
 sealed class CocktailViewState: BaseViewState(){
 
     data class CocktailsReceived(val cocktails: List <Cocktail>):BaseViewState()
-    //object ResultReceived: CocktailViewState()
 }
