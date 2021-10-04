@@ -41,7 +41,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="@{item.name}"
-                android:textSize="19dp"
+                android:textSize="17dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/txvCategory"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{item.category}"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 app:layout_constraintBottom_toBottomOf="@id/txvName"
                 app:layout_constraintEnd_toEndOf="@id/txvName"
                 app:layout_constraintStart_toStartOf="@id/txvName"
@@ -65,8 +65,9 @@
                 android:id="@+id/imgFavorite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_marginRight="10dp"
                 android:src="@drawable/ic_no_star"
-                app:layout_constraintEnd_toEndOf="@id/txvName"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgCocktail" />
 
 

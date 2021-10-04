@@ -28,6 +28,8 @@ import java.lang.reflect.Modifier
 import android.util.DisplayMetrics
 import android.view.Display
 import android.view.View.MeasureSpec
+import androidx.cardview.widget.CardView
+import com.google.android.material.card.MaterialCardView
 
 
 @DelicateCoroutinesApi
@@ -58,8 +60,10 @@ class CocktailFragment : BaseFragment(R.layout.cocktail_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         val searchInput: SearchView = requireView().findViewById(R.id.svCocktail)
+
         val btnChangeView: FloatingActionButton =
             requireView().findViewById(R.id.floatingViewChange)
+
         val rv: RecyclerView = requireView().findViewById(R.id.rcCocktails)
 
 
@@ -75,11 +79,11 @@ class CocktailFragment : BaseFragment(R.layout.cocktail_fragment) {
                     binding.rcCocktails.scrollToPosition(0)
                     cocktailViewModel.doGetCocktailsByName(query.lowercase())
                     //searchInput.clearFocus() ->Hide keyboard at type key...
+
                 }
                 return true
             }
         })
-
 
         btnChangeView.setOnClickListener {
             setViews(rv, btnChangeView)
