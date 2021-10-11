@@ -1,6 +1,5 @@
-package com.arasaka.cocktailheap.framework
+package com.arasaka.cocktailheap.framework.api
 
-import android.content.Context
 import com.arasaka.cocktailheap.core.exception.Failure
 import com.arasaka.cocktailheap.core.functional.Either
 import com.arasaka.cocktailheap.core.platform.NetworkHandler

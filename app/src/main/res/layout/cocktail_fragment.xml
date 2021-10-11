@@ -38,7 +38,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:iconifiedByDefault="false"
-                    android:queryHint="Looking for a cooktail?"
+                    android:queryHint="@string/text_query_hint"
+                    android:inputType="textFilter"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -59,11 +60,12 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcCocktails"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:visibility="gone"
                 android:clipToPadding="false"
                 android:paddingBottom="?attr/actionBarSize"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constrainedHeight="true"
+
                 tools:itemCount="10"
                 tools:listitem="@layout/row_cocktail" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -78,6 +80,12 @@
             android:src="@drawable/ic_grid"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <include
+            android:id="@+id/emptyView"
+            layout="@layout/empty_view"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

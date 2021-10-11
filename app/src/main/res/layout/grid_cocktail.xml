@@ -9,88 +9,72 @@
             type="com.arasaka.cocktailheap.domain.model.Cocktail" />
     </data>
 
-
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_height="wrap_content"
+    <com.google.android.material.card.MaterialCardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:rowCount="3"
-        app:columnCount="3"
-        >
-
-
-    <com.google.android.material.card.MaterialCardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="140dp"
-        android:layout_height="160dp"
-        android:layout_margin="5dp"
-        card_view:cardCornerRadius="8dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth="1dp"
-        card_view:layout_columnWeight="1"
-        card_view:layout_rowWeight="1"
-        >
+        card_view:cardCornerRadius="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imgCocktail"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_margin="10dp"
-                app:loadFromURL="@{item.urlThumb}"
-                app:layout_constraintBottom_toTopOf="@id/txvName"
-                card_view:layout_constraintLeft_toLeftOf="parent"
-                card_view:layout_constraintRight_toRightOf="parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                app:loadFromURL="@{item.urlThumb}"
                 tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/txvName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="@{item.name}"
-                android:textSize="19dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textSize="17dp"
+                card_view:layout_constraintTop_toBottomOf="@id/imgCocktail"
+                card_view:layout_constraintStart_toStartOf="@id/imgCocktail"
+                card_view:layout_constraintEnd_toEndOf="@id/imgCocktail"
+                card_view:layout_constraintBottom_toBottomOf="parent"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/txvCategory"
-                card_view:layout_constraintLeft_toLeftOf="parent"
-                card_view:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgCocktail"
-                tools:text="Beer"
-                card_view:flow_horizontalAlign="center"/>
+                tools:text="Beer" />
 
-            <TextView
+           <!-- <TextView
                 android:id="@+id/txvCategory"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{item.category}"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@id/imgFavorite"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/txvName"
                 app:layout_constraintEnd_toEndOf="@id/txvName"
                 app:layout_constraintStart_toStartOf="@id/txvName"
                 app:layout_constraintTop_toBottomOf="@id/txvName"
-                tools:text="Category" />
+                tools:text="Category" />-->
 
             <ImageView
                 android:id="@+id/imgFavorite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_marginRight="5dp"
                 android:src="@drawable/ic_no_star"
-                card_view:layout_constraintTop_toTopOf="@id/imgCocktail"
-                card_view:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imgCocktail" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
-    </androidx.gridlayout.widget.GridLayout>
-
 </layout>

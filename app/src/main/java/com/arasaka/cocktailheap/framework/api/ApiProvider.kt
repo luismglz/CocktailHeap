@@ -1,4 +1,4 @@
-package com.arasaka.cocktailheap.framework
+package com.arasaka.cocktailheap.framework.api
 
 import com.arasaka.cocktailheap.BuildConfig
 import okhttp3.OkHttpClient

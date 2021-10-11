@@ -4,4 +4,6 @@
     <string name="text_favorites">Favorites</string>
     <string name="text_account">Account</string>
     <string name="failure_response">Oops\nError making call with server</string>
+    <string name="text_query_hint">Looking for a cooktail?</string>
+    <string name="no_information">Oops!\nThere is no information</string>
 </resources>

@@ -1,13 +1,9 @@
 package com.arasaka.cocktailheap.presentation.cocktails
 
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
-import android.widget.ImageView
 import android.widget.SearchView
-import android.widget.TextView
-import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,13 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 import kotlinx.coroutines.DelicateCoroutinesApi
-import org.w3c.dom.Text
-import java.lang.reflect.Modifier
-import android.util.DisplayMetrics
-import android.view.Display
-import android.view.View.MeasureSpec
-import androidx.cardview.widget.CardView
-import com.google.android.material.card.MaterialCardView
+import com.arasaka.cocktailheap.core.utils.LayoutType
 
 
 @DelicateCoroutinesApi
@@ -37,7 +27,7 @@ import com.google.android.material.card.MaterialCardView
 @AndroidEntryPoint
 class CocktailFragment : BaseFragment(R.layout.cocktail_fragment) {
     private lateinit var binding: CocktailFragmentBinding
-    private lateinit var adapter: CocktailAdapter
+    private val adapter: CocktailAdapter by lazy {CocktailAdapter()}
     private var gridLayoutManager:GridLayoutManager?=null
 
 
@@ -51,7 +41,6 @@ class CocktailFragment : BaseFragment(R.layout.cocktail_fragment) {
             failure(failure, ::handleFailure)
 
             doGetCocktailsByName("")
-            //cocktailViewModel.doGetCocktailsByName("")
         }
     }
 
@@ -59,7 +48,7 @@ class CocktailFragment : BaseFragment(R.layout.cocktail_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val searchInput: SearchView = requireView().findViewById(R.id.svCocktail)
+        //val searchInput: SearchView = requireView().findViewById(R.id.svCocktail)
 
         val btnChangeView: FloatingActionButton =
             requireView().findViewById(R.id.floatingViewChange)
@@ -67,6 +56,7 @@ class CocktailFragment : BaseFragment(R.layout.cocktail_fragment) {
         val rv: RecyclerView = requireView().findViewById(R.id.rcCocktails)
 
 
+        /*
         searchInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             //ENTER BUTTON IN KEYBOARD (submit search)
@@ -83,36 +73,17 @@ class CocktailFragment : BaseFragment(R.layout.cocktail_fragment) {
                 }
                 return true
             }
-        })
+        })*/
 
+        /*
+        //previous change view
         btnChangeView.setOnClickListener {
             setViews(rv, btnChangeView)
-        }
+        }*/
 
     }
 
-    fun setViews(rv: RecyclerView, btnChangeView: FloatingActionButton) {
-        if (rv.layoutManager is GridLayoutManager) {
-            rv.layoutManager = LinearLayoutManager(context)
-            btnChangeView.setImageDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_grid
-                )
-            )
-        } else {
-            gridLayoutManager = GridLayoutManager(context,2,LinearLayoutManager.VERTICAL,false)
-            //rv.layoutManager = GridLayoutManager(context, 2)
-            rv.layoutManager = gridLayoutManager
-            rv.setHasFixedSize(true)
-            btnChangeView.setImageDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_row
-                )
-            )
-        }
-    }
+
 
 
     override fun onViewStateChanged(state: BaseViewState?) {
@@ -124,9 +95,11 @@ class CocktailFragment : BaseFragment(R.layout.cocktail_fragment) {
 
 
     private fun setUpAdapter(cocktails: List<Cocktail>) {
-        adapter = CocktailAdapter();
+        binding.emptyView.isVisible = cocktails.isEmpty()
         adapter.addData(cocktails);
         binding.rcCocktails.apply {
+
+            isVisible = cocktails.isNotEmpty()
             adapter = this@CocktailFragment.adapter
         }
 
@@ -135,6 +108,34 @@ class CocktailFragment : BaseFragment(R.layout.cocktail_fragment) {
     override fun setBinding(view: View) {
         binding = CocktailFragmentBinding.bind(view)
         binding.lifecycleOwner = this
+        binding.svCocktail.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            //ENTER BUTTON IN KEYBOARD (submit search)
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if (query != null) {
+                    binding.rcCocktails.scrollToPosition(0)
+                    cocktailViewModel.doGetCocktailsByName(query.lowercase()?:"")
+                    //searchInput.clearFocus() ->Hide keyboard at type key...
+                }
+                return true
+            }
+        })
+
+        binding.floatingViewChange.setOnClickListener{
+            val newLayout = if(adapter.layoutType == LayoutType.LINEAR){
+                binding.rcCocktails.layoutManager = GridLayoutManager(requireContext(),3);
+                LayoutType.GRID
+
+            }else{
+                binding.rcCocktails.layoutManager = LinearLayoutManager(requireContext());
+                LayoutType.LINEAR
+            }
+            adapter.changeView(newLayout)
+        }
     }
 
 }

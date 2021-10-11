@@ -2,7 +2,7 @@ package com.arasaka.cocktailheap.core.di
 
 import android.content.Context
 import com.arasaka.cocktailheap.core.platform.NetworkHandler
-import com.arasaka.cocktailheap.framework.ApiProvider
+import com.arasaka.cocktailheap.framework.api.ApiProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
